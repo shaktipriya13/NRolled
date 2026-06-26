@@ -46,6 +46,27 @@ graph TD
 
 ---
 
+## 📸 Application Screenshots
+
+*(Paste your screenshots below their respective headings)*
+
+### 🏠 Home & Landing Page
+*(Add screenshot of the landing page here)*
+
+### 🔐 Authentication (Login & Register)
+*(Add screenshot of the login/register screens here)*
+
+### 👨‍💼 Admin Dashboard
+*(Add screenshot of the admin overview and metrics here)*
+
+### 👥 Employee Dashboard & Leave Application
+*(Add screenshot of the employee view and leave application form here)*
+
+### 🔔 Live Notifications & Approvals
+*(Add screenshot of the notification dropdown and leave request tables here)*
+
+---
+
 ## 🛠️ Setup & Running
 
 ### Prerequisites
