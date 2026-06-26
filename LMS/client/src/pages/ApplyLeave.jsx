@@ -79,7 +79,6 @@ const ApplyLeave = () => {
       setToDate("");
       setReason("");
       
-      // Update balance locally
       const updatedStats = await api.getUserStats();
       setStats(updatedStats);
 
@@ -96,28 +95,30 @@ const ApplyLeave = () => {
   const totalDaysRequested = calculateDays();
 
   return (
-    <div className="min-h-screen bg-slate-50 pb-12">
+    <div className="min-h-screen bg-[#030712] bg-glow-mesh pb-16">
       <Navbar />
 
-      <div className="max-w-2xl mx-auto px-4 pt-8">
-        <div className="mb-6 flex items-center gap-3">
+      <div className="max-w-2xl mx-auto px-6 pt-10">
+        <div className="mb-8 flex items-center gap-4">
           <button
             onClick={() => navigate(-1)}
-            className="p-2 bg-white rounded-xl border border-slate-200 hover:bg-slate-50 transition-all cursor-pointer"
+            className="p-3 bg-slate-900/50 hover:bg-slate-900 border border-white/10 rounded-2xl transition-all cursor-pointer text-slate-300"
           >
-            <svg className="w-5 h-5 text-slate-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2.5" d="M15 19l-7-7 7-7" />
             </svg>
           </button>
           <div>
-            <h1 className="text-2xl font-bold text-slate-800">Apply For Leave</h1>
-            <p className="text-slate-400 text-xs">Request time off and monitor status approvals.</p>
+            <h1 className="text-2xl font-black text-white tracking-tight">Apply For Leave</h1>
+            <p className="text-slate-400 text-xs mt-1">Submit new leave requests and verify dates.</p>
           </div>
         </div>
 
-        <div className="bg-white/80 backdrop-blur-md rounded-3xl border border-slate-200/80 p-6 md:p-8 shadow-sm">
+        <div className="relative overflow-hidden bg-slate-900/40 backdrop-blur-xl rounded-3xl border border-white/10 p-6 md:p-8 shadow-xl">
+          <div className="absolute inset-0 bg-gradient-to-br from-white/3 to-transparent pointer-events-none"></div>
+
           {error && (
-            <div className="mb-5 p-3.5 rounded-xl bg-rose-50 border border-rose-100 text-rose-600 text-xs font-semibold flex items-center gap-2">
+            <div className="mb-6 p-4 rounded-2xl bg-rose-500/10 border border-rose-500/20 text-rose-400 text-xs font-semibold flex items-center gap-2">
               <svg className="w-4 h-4 shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2.5" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z" />
               </svg>
@@ -126,7 +127,7 @@ const ApplyLeave = () => {
           )}
 
           {success && (
-            <div className="mb-5 p-3.5 rounded-xl bg-emerald-50 border border-emerald-100 text-emerald-600 text-xs font-semibold flex items-center gap-2">
+            <div className="mb-6 p-4 rounded-2xl bg-emerald-500/10 border border-emerald-500/20 text-emerald-400 text-xs font-semibold flex items-center gap-2">
               <svg className="w-4 h-4 shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2.5" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
               </svg>
@@ -134,61 +135,61 @@ const ApplyLeave = () => {
             </div>
           )}
 
-          <div className="mb-6 bg-indigo-50 border border-indigo-100 p-4 rounded-2xl flex items-center justify-between">
-            <span className="text-sm font-semibold text-indigo-800">Your Leave Balance</span>
-            <span className="text-lg font-black text-indigo-700 bg-white px-3 py-1 rounded-xl shadow-sm">
+          <div className="mb-8 bg-indigo-500/10 border border-indigo-500/20 p-5 rounded-2xl flex items-center justify-between shadow-inner">
+            <span className="text-xs font-black tracking-wider text-indigo-400 uppercase">Available Leave Balance</span>
+            <span className="text-base font-black text-white bg-indigo-600 px-3.5 py-1.5 rounded-xl shadow-md shadow-indigo-500/10 border border-indigo-500/25">
               {stats.leaveBalance} {stats.leaveBalance === 1 ? "Day" : "Days"}
             </span>
           </div>
 
-          <form onSubmit={handleSubmit} className="space-y-5">
+          <form onSubmit={handleSubmit} className="space-y-6 relative z-10">
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
               <div>
-                <label className="block text-slate-700 font-semibold text-xs uppercase tracking-wider mb-1.5">
+                <label className="block text-slate-400 font-bold text-[10px] uppercase tracking-wider mb-2">
                   From Date
                 </label>
                 <input
                   type="date"
                   value={fromDate}
                   onChange={(e) => setFromDate(e.target.value)}
-                  className="w-full border border-slate-200 bg-white/65 rounded-xl px-4 py-3 text-sm focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-transparent transition-all"
+                  className="w-full border border-white/10 bg-slate-900/40 rounded-2xl px-4 py-3.5 text-sm text-white focus:outline-none focus:ring-2 focus:ring-indigo-500/40 focus:border-indigo-500/50 transition-all duration-300"
                   required
                 />
               </div>
 
               <div>
-                <label className="block text-slate-700 font-semibold text-xs uppercase tracking-wider mb-1.5">
+                <label className="block text-slate-400 font-bold text-[10px] uppercase tracking-wider mb-2">
                   To Date
                 </label>
                 <input
                   type="date"
                   value={toDate}
                   onChange={(e) => setToDate(e.target.value)}
-                  className="w-full border border-slate-200 bg-white/65 rounded-xl px-4 py-3 text-sm focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-transparent transition-all"
+                  className="w-full border border-white/10 bg-slate-900/40 rounded-2xl px-4 py-3.5 text-sm text-white focus:outline-none focus:ring-2 focus:ring-indigo-500/40 focus:border-indigo-500/50 transition-all duration-300"
                   required
                 />
               </div>
             </div>
 
             {totalDaysRequested > 0 && (
-              <div className="p-3 bg-slate-100 border border-slate-200/60 rounded-xl flex items-center justify-between text-xs">
-                <span className="text-slate-600 font-medium">Total requested duration:</span>
-                <span className="font-bold text-slate-800 bg-white px-2 py-0.5 rounded-lg shadow-sm">
+              <div className="p-4 bg-white/5 border border-white/5 rounded-2xl flex items-center justify-between text-xs">
+                <span className="text-slate-400 font-medium">Requested Duration:</span>
+                <span className="font-extrabold text-indigo-400 bg-indigo-500/10 border border-indigo-500/20 px-3.5 py-1.5 rounded-xl">
                   {totalDaysRequested} {totalDaysRequested === 1 ? "day" : "days"}
                 </span>
               </div>
             )}
 
             <div>
-              <label className="block text-slate-700 font-semibold text-xs uppercase tracking-wider mb-1.5">
+              <label className="block text-slate-400 font-bold text-[10px] uppercase tracking-wider mb-2">
                 Reason
               </label>
               <textarea
                 rows="4"
                 value={reason}
                 onChange={(e) => setReason(e.target.value)}
-                placeholder="Briefly state the reason for requesting leave..."
-                className="w-full border border-slate-200 bg-white/65 rounded-xl p-4 text-sm focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-transparent transition-all"
+                placeholder="Reason for requesting time off..."
+                className="w-full border border-white/10 bg-slate-900/40 rounded-2xl p-4 text-sm text-white placeholder-slate-500 focus:outline-none focus:ring-2 focus:ring-indigo-500/40 focus:border-indigo-500/50 transition-all duration-300"
                 required
               />
             </div>
@@ -196,7 +197,7 @@ const ApplyLeave = () => {
             <button
               type="submit"
               disabled={loading}
-              className="w-full bg-indigo-600 text-white font-bold py-3.5 rounded-xl hover:bg-indigo-700 active:scale-[0.99] transition-all shadow-md shadow-indigo-200/50 flex items-center justify-center cursor-pointer"
+              className="w-full bg-gradient-to-tr from-indigo-500 to-indigo-600 hover:from-indigo-600 hover:to-indigo-700 text-white font-bold py-4 rounded-2xl active:scale-[0.99] transition-all duration-300 shadow-lg shadow-indigo-500/15 flex items-center justify-center cursor-pointer text-sm"
             >
               {loading ? (
                 <div className="w-5 h-5 border-2 border-white border-t-transparent rounded-full animate-spin"></div>

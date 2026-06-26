@@ -28,7 +28,7 @@ const UserSchema = new mongoose.Schema(
     },
     leaveBalance: {
       type: Number,
-      default: 24,
+      default: 15,
     },
   },
   { timestamps: true }

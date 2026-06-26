@@ -34,27 +34,28 @@ const Login = () => {
   };
 
   return (
-    <div className="min-h-screen flex justify-center items-center bg-gradient-to-tr from-slate-100 via-slate-50 to-indigo-100/30 p-4">
-      <div className="relative w-full max-w-md">
-        {/* Ambient decorative blobs */}
-        <div className="absolute -top-12 -left-12 w-48 h-48 bg-indigo-300 rounded-full mix-blend-multiply filter blur-xl opacity-40 animate-pulse"></div>
-        <div className="absolute -bottom-12 -right-12 w-48 h-48 bg-purple-300 rounded-full mix-blend-multiply filter blur-xl opacity-40 animate-pulse delay-1000"></div>
+    <div className="min-h-screen flex justify-center items-center bg-[#020617] bg-glow-mesh p-4 relative overflow-hidden">
+      {/* Dynamic background ambient lights */}
+      <div className="absolute top-1/4 left-1/4 w-72 h-72 bg-indigo-500/10 rounded-full blur-3xl animate-pulse-glow"></div>
+      <div className="absolute bottom-1/4 right-1/4 w-72 h-72 bg-purple-500/10 rounded-full blur-3xl animate-pulse-glow delay-3000"></div>
 
-        <div className="relative bg-white/80 backdrop-blur-lg p-8 rounded-3xl border border-white/60 shadow-xl">
+      <div className="relative w-full max-w-md">
+        <div className="absolute -inset-0.5 bg-gradient-to-tr from-indigo-500 to-purple-500 rounded-3xl opacity-20 blur-sm"></div>
+        <div className="relative bg-slate-950/70 backdrop-blur-2xl p-8 md:p-10 rounded-3xl border border-white/10 shadow-2xl">
           <div className="text-center mb-8">
-            <div className="inline-flex w-12 h-12 rounded-2xl bg-indigo-600 items-center justify-center text-white font-black text-xl mb-3 shadow-lg shadow-indigo-200">
+            <Link to="/" className="inline-flex w-12 h-12 rounded-2xl bg-gradient-to-tr from-indigo-500 to-purple-600 items-center justify-center text-white font-black text-2xl mb-4 shadow-lg shadow-indigo-500/20">
               L
-            </div>
-            <h2 className="text-3xl font-extrabold tracking-tight text-slate-800">
-              Welcome Back
+            </Link>
+            <h2 className="text-3xl font-extrabold tracking-tight text-white">
+              Welcome back
             </h2>
-            <p className="text-slate-500 text-sm mt-1.5">
-              Sign in to manage your leave dashboard
+            <p className="text-slate-400 text-xs mt-2 font-medium">
+              Absence management & stats tracking simplified.
             </p>
           </div>
 
           {error && (
-            <div className="mb-5 p-3.5 rounded-xl bg-rose-50 border border-rose-100 text-rose-600 text-xs font-semibold flex items-center gap-2">
+            <div className="mb-6 p-4 rounded-2xl bg-rose-500/10 border border-rose-500/20 text-rose-400 text-xs font-semibold flex items-center gap-2">
               <svg className="w-4 h-4 shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2.5" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z" />
               </svg>
@@ -62,23 +63,23 @@ const Login = () => {
             </div>
           )}
 
-          <form onSubmit={handleSubmit} className="space-y-4">
+          <form onSubmit={handleSubmit} className="space-y-5">
             <div>
-              <label className="block text-slate-700 font-semibold text-xs uppercase tracking-wider mb-1.5">
+              <label className="block text-slate-400 font-bold text-[10px] uppercase tracking-wider mb-2">
                 Email Address
               </label>
               <input
                 type="email"
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
-                placeholder="you@example.com"
-                className="w-full border border-slate-200 bg-white/65 rounded-xl px-4 py-3 text-sm focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-transparent transition-all"
+                placeholder="name@company.com"
+                className="w-full border border-white/10 bg-slate-900/40 rounded-2xl px-4.5 py-3.5 text-sm text-white placeholder-slate-500 focus:outline-none focus:ring-2 focus:ring-indigo-500/40 focus:border-indigo-500/50 transition-all duration-300"
                 required
               />
             </div>
 
             <div>
-              <label className="block text-slate-700 font-semibold text-xs uppercase tracking-wider mb-1.5">
+              <label className="block text-slate-400 font-bold text-[10px] uppercase tracking-wider mb-2">
                 Password
               </label>
               <input
@@ -86,7 +87,7 @@ const Login = () => {
                 value={password}
                 onChange={(e) => setPassword(e.target.value)}
                 placeholder="••••••••"
-                className="w-full border border-slate-200 bg-white/65 rounded-xl px-4 py-3 text-sm focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-transparent transition-all"
+                className="w-full border border-white/10 bg-slate-900/40 rounded-2xl px-4.5 py-3.5 text-sm text-white placeholder-slate-500 focus:outline-none focus:ring-2 focus:ring-indigo-500/40 focus:border-indigo-500/50 transition-all duration-300"
                 required
               />
             </div>
@@ -94,7 +95,7 @@ const Login = () => {
             <button
               type="submit"
               disabled={isSubmitting}
-              className="w-full bg-indigo-600 text-white font-bold py-3.5 rounded-xl hover:bg-indigo-700 active:scale-[0.99] transition-all shadow-md shadow-indigo-200/50 flex items-center justify-center cursor-pointer"
+              className="w-full mt-2 bg-gradient-to-tr from-indigo-500 to-indigo-600 hover:from-indigo-600 hover:to-indigo-700 text-white font-bold py-4 rounded-2xl active:scale-[0.99] transition-all duration-300 shadow-lg shadow-indigo-500/10 flex items-center justify-center cursor-pointer text-sm"
             >
               {isSubmitting ? (
                 <div className="w-5 h-5 border-2 border-white border-t-transparent rounded-full animate-spin"></div>
@@ -104,12 +105,12 @@ const Login = () => {
             </button>
           </form>
 
-          <div className="mt-8 text-center border-t border-slate-100 pt-5">
-            <p className="text-slate-500 text-xs">
-              Don't have an account?{" "}
+          <div className="mt-8 text-center border-t border-white/5 pt-5">
+            <p className="text-slate-400 text-xs">
+              New to LeaveSync?{" "}
               <Link
                 to="/register"
-                className="text-indigo-600 font-bold hover:underline"
+                className="text-indigo-400 font-bold hover:underline"
               >
                 Create an account
               </Link>

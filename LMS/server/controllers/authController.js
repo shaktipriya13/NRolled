@@ -26,7 +26,7 @@ const registerUser = async (req, res) => {
     }
 
     // Determine leave balance
-    const leaveBalance = role === "admin" ? 0 : 24;
+    const leaveBalance = role === "admin" ? 0 : 15;
 
     // Create user
     const user = await User.create({

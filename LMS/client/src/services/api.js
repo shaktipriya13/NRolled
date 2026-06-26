@@ -6,7 +6,7 @@ const initMockDB = () => {
   if (!localStorage.getItem("lms_db_users")) {
     const defaultUsers = [
       { id: "u1", name: "Rahul Sharma", email: "rahul@example.com", password: "password123", role: "employee", leaveBalance: 20 },
-      { id: "u2", name: "Priya Singh", email: "priya@example.com", password: "password123", role: "employee", leaveBalance: 24 },
+      { id: "u2", name: "Priya Singh", email: "priya@example.com", password: "password123", role: "employee", leaveBalance: 15 },
       { id: "u3", name: "Amit Kumar", email: "admin@example.com", password: "password123", role: "admin", leaveBalance: 0 }
     ];
     localStorage.setItem("lms_db_users", JSON.stringify(defaultUsers));
@@ -140,7 +140,7 @@ export const register = async (name, email, password, role = "employee") => {
       email,
       password,
       role,
-      leaveBalance: role === "admin" ? 0 : 24,
+      leaveBalance: role === "admin" ? 0 : 15,
     };
     users.push(newUser);
     setLocalUsers(users);
