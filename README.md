@@ -1,11 +1,11 @@
-# LeaveSync — Premium Leave Management System
+# LeaveSync — Leave Management System
 
 ![Uploading image.png…]()
 
 
 LeaveSync is a full-stack, high-fidelity Leave Management System (LMS) designed for modern organizations to handle employee time-off requests, track leave balances, and manage administrative reviews with absolute ease.
 
-It features a premium user interface with interactive dashboards, custom indicators, real-time notification polling, and a smart dual-engine API layer that operates seamlessly in both online database-connected mode and standalone offline mode.
+It features a user interface with interactive dashboards, custom indicators, real-time notification polling, and a smart dual-engine API layer that operates seamlessly in both online database-connected mode and standalone offline mode.
 
 ---
 
