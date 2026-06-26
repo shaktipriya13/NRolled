@@ -1,6 +1,7 @@
 # LeaveSync — Leave Management System
 
-![Uploading image.png…]()
+<img width="1918" height="862" alt="image" src="https://github.com/user-attachments/assets/badd5563-0d43-4758-94ae-097822896774" />
+
 
 
 LeaveSync is a full-stack, high-fidelity Leave Management System (LMS) designed for modern organizations to handle employee time-off requests, track leave balances, and manage administrative reviews with absolute ease.
@@ -54,20 +55,29 @@ graph TD
 *(Paste your screenshots below their respective headings)*
 
 ### 🏠 Home & Landing Page
-*(Add screenshot of the landing page here)*
+<img width="1918" height="862" alt="image" src="https://github.com/user-attachments/assets/7120403d-caf0-4572-8ae8-734dcf245b09" />
+<br/>
 
 ### 🔐 Authentication (Login & Register)
-*(Add screenshot of the login/register screens here)*
+<img width="1920" height="1080" alt="image" src="https://github.com/user-attachments/assets/eb337d39-7368-48b8-a5ae-7ed4fd43bfe5" />
+<br/>
 
 ### 👨‍💼 Admin Dashboard
-*(Add screenshot of the admin overview and metrics here)*
+<img width="1920" height="1080" alt="image" src="https://github.com/user-attachments/assets/18b17ae7-5cd1-4432-8d30-b3824cc03971" />
+
+<img width="1908" height="653" alt="image" src="https://github.com/user-attachments/assets/5ccf6b16-4634-41ac-b3b6-938fd48a1627" />
+<br/>
+
 
 ### 👥 Employee Dashboard & Leave Application
-*(Add screenshot of the employee view and leave application form here)*
+<img width="1908" height="828" alt="image" src="https://github.com/user-attachments/assets/0d2ef4a6-e5e2-49bf-bd3d-fd4547698e7b" />
+<img width="1918" height="611" alt="image" src="https://github.com/user-attachments/assets/9e7999e8-fca4-422d-a89f-7725532d8a40" />
+<br/>
 
-### 🔔 Live Notifications & Approvals
-*(Add screenshot of the notification dropdown and leave request tables here)*
 
+### 🔔 Live Notifications 
+<img width="795" height="572" alt="image" src="https://github.com/user-attachments/assets/19921c00-e8b1-49b4-b8db-f9a9ed798159" />
+<br/>
 ---
 
 ## 🛠️ Setup & Running
