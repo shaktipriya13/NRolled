@@ -1,5 +1,5 @@
 // API Service with high-quality LocalStorage fallback engine
-const API_URL = "http://localhost:5000/api";
+const API_URL = import.meta.env.VITE_API_URL || "http://localhost:5000/api";
 
 // Initialize mock data in LocalStorage if not present
 const initMockDB = () => {

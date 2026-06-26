@@ -46,11 +46,11 @@ const Register = () => {
       {/* Home Button Link */}
       <Link
         to="/"
-        className="absolute top-6 left-6 z-10 flex items-center justify-center w-10 h-10 rounded-xl bg-slate-900/60 border border-white/10 text-slate-400 hover:text-white hover:bg-slate-800/80 transition-all duration-300 shadow-lg"
+        className="absolute top-6 left-6 z-10 flex items-center justify-center w-12 h-12 rounded-xl bg-slate-900/60 border border-white/10 text-slate-400 hover:text-white hover:bg-slate-800/80 transition-all duration-300 shadow-lg"
         title="Go to Home"
       >
         <svg
-          className="w-5 h-5"
+          className="w-6 h-6"
           fill="none"
           viewBox="0 0 24 24"
           stroke="currentColor"

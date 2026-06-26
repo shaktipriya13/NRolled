@@ -1,11 +1,13 @@
 import { useState, useEffect } from "react";
+import { useLocation } from "react-router-dom";
 import Navbar from "../components/Navbar";
 import * as api from "../services/api";
 
 const AllRequests = () => {
+  const location = useLocation();
   const [requests, setRequests] = useState([]);
   const [loading, setLoading] = useState(true);
-  const [filter, setFilter] = useState("PENDING");
+  const [filter, setFilter] = useState(location.state?.filter || "PENDING");
   const [actionLoading, setActionLoading] = useState({});
   const [message, setMessage] = useState({ text: "", type: "" });
 
