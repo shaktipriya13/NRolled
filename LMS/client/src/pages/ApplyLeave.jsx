@@ -86,7 +86,7 @@ const ApplyLeave = () => {
         navigate("/employee");
       }, 1500);
     } catch (err) {
-      setError(err.message || "Failed to submit leave request.");
+      setError("Server error. Please try again later.");
     } finally {
       setLoading(false);
     }

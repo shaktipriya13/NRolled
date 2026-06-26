@@ -6,7 +6,7 @@ It features a premium user interface with interactive dashboards, custom indicat
 
 ---
 
-## 🚀 Tech Stack
+## 🌟 Tech Stack
 
 ### Frontend (Client)
 * **React 19**: Modern UI component architecture.
@@ -36,9 +36,13 @@ graph TD
 ```
 
 ### Key Design Pillars
-1. **Dual-Engine API Fallback**: The client API layer automatically health-checks the backend server. If the server is offline or inaccessible, the application automatically mounts a **high-fidelity LocalStorage Database** containing pre-configured mock credentials. The app remains fully functional, allowing you to test login, dashboards, leave applications, notifications, and approvals without running a database.
-2. **Programmatic DNS Routing**: The backend server forcibly overrides Node's default system DNS resolver in favor of Google (`8.8.8.8`) and Cloudflare (`1.1.1.1`) public DNS servers. This prevents standard local system lookup failures (e.g. `querySrv ENOTFOUND`) when establishing connections to MongoDB Atlas.
-3. **Role-Based Guards**: Protected routing guards automatically redirect unauthorized users. Employees are locked to `/employee`, and Admins are locked to `/admin` directories.
+1. **Full-Stack Live Notifications**: Complete database-backed notifications system tracking unread message counts, status shifts, and reads.
+   - Employees are notified of leave updates: `"Your leave request for 10 Jul - 12 Jul has been approved."`
+   - Admins are notified of submissions: `"New leave request submitted by Shakti Priya."`
+   - Real-time unread badges poll directly inside the glassmorphic navigation bar.
+2. **Dual-Engine API Fallback**: The client API layer automatically health-checks the backend server. If the server is offline or inaccessible, the application automatically mounts a **high-fidelity LocalStorage Database** containing pre-configured mock credentials. The app remains fully functional, allowing you to test login, dashboards, leave applications, notifications, and approvals without running a database.
+3. **Programmatic DNS Routing**: The backend server forcibly overrides Node's default system DNS resolver in favor of Google (`8.8.8.8`) and Cloudflare (`1.1.1.1`) public DNS servers. This prevents standard local system lookup failures (e.g. `querySrv ENOTFOUND`) when establishing connections to MongoDB Atlas.
+4. **Role-Based Guards**: Protected routing guards automatically redirect unauthorized users. Employees are locked to `/employee`, and Admins are locked to `/admin` directories.
 
 ---
 
@@ -56,7 +60,7 @@ graph TD
 2. Open the `.env` file and configure your credentials:
    ```env
    PORT=5000
-   MONGO_URI=mongodb+srv://<username>:<password>@cluster0.ooko7kh.mongodb.net/leavesync?retryWrites=true&w=majority
+   MONGO_URI=mongodb+srv://<username>:<password>@cluster0.0oko7kh.mongodb.net/leavesync?retryWrites=true&w=majority
    JWT_SECRET=mysecret
    ```
 3. Install dependencies and start the backend:
@@ -95,10 +99,11 @@ If running without the MongoDB backend, you can sign in directly using these pre
 This project was developed in pair-programming collaboration with **Antigravity (by Google DeepMind)**.
 
 ### AI Integration Areas:
-* **Glassmorphic UI Design**: Crafting custom tailwind utility extensions and color maps.
-* **State Mock DB Engine**: Designing local storage fallback synchronization mechanisms that duplicate database behaviors (triggers, balance deduction, notifications dispatch).
-* **Network & DNS Resolvers**: Overcoming MongoDB connection lookup bugs by implementing code-level DNS overrides.
-* **Component Restructuring**: Rewriting static views into state-driven React modules.
+* **Full-Stack Live Notifications**: Designed schema models, route controllers, date range formatting helpers, and reactive dropdown notification menus.
+* **Glassmorphic UI Design**: Crafted tailwind utility extensions, custom glow balls, transparent dashboard widgets, and float keyframes.
+* **State Mock DB Engine**: Designed local storage fallback synchronization mechanisms that duplicate database behaviors (triggers, balance deduction, notifications dispatch).
+* **Network & DNS Resolvers**: Overcame MongoDB connection lookup bugs by implementing code-level DNS overrides.
+* **Component Restructuring**: Rewrote static views into state-driven React modules.
 
 ---
 

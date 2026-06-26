@@ -36,7 +36,7 @@ const AllRequests = () => {
       await loadRequests();
     } catch (err) {
       setMessage({
-        text: err.message || `Failed to ${status.toLowerCase()} request.`,
+        text: "Server error. Please try again later.",
         type: "error",
       });
     } finally {

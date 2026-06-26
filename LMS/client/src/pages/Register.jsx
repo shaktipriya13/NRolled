@@ -35,7 +35,7 @@ const Register = () => {
         navigate("/employee");
       }
     } catch (err) {
-      setError(err.message || "Registration failed. Try using a different email.");
+      setError("Server error. Please try again later.");
     } finally {
       setIsSubmitting(false);
     }

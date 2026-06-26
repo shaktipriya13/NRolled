@@ -5,6 +5,7 @@ import { useAuth } from "../context/authContext";
 const Login = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [role, setRole] = useState("employee");
   const [error, setError] = useState("");
   const [isSubmitting, setIsSubmitting] = useState(false);
   const { login } = useAuth();
@@ -21,13 +22,23 @@ const Login = () => {
     setIsSubmitting(true);
     try {
       const user = await login(email, password);
+      
+      // Role matching validation
+      if (user.role !== role) {
+        throw new Error(`Unauthorized. This account is registered as an ${user.role}, not an ${role}.`);
+      }
+
       if (user.role === "admin") {
         navigate("/admin");
       } else {
         navigate("/employee");
       }
     } catch (err) {
-      setError(err.message || "Invalid credentials. Please try again.");
+      if (err.message && err.message.startsWith("Unauthorized")) {
+        setError(err.message);
+      } else {
+        setError("Invalid user credentials");
+      }
     } finally {
       setIsSubmitting(false);
     }
@@ -85,6 +96,36 @@ const Login = () => {
           )}
 
           <form onSubmit={handleSubmit} className="space-y-5">
+            <div>
+              <label className="block text-slate-400 font-bold text-[10px] uppercase tracking-wider mb-2.5">
+                Login As
+              </label>
+              <div className="grid grid-cols-2 gap-2 bg-slate-900/60 p-1 rounded-2xl border border-white/5 mb-2">
+                <button
+                  type="button"
+                  onClick={() => setRole("employee")}
+                  className={`py-2.5 rounded-xl text-xs font-bold transition-all duration-300 cursor-pointer ${
+                    role === "employee"
+                      ? "bg-indigo-600 text-white shadow"
+                      : "text-slate-400 hover:text-slate-200"
+                  }`}
+                >
+                  Employee
+                </button>
+                <button
+                  type="button"
+                  onClick={() => setRole("admin")}
+                  className={`py-2.5 rounded-xl text-xs font-bold transition-all duration-300 cursor-pointer ${
+                    role === "admin"
+                      ? "bg-indigo-600 text-white shadow"
+                      : "text-slate-400 hover:text-slate-200"
+                  }`}
+                >
+                  Admin
+                </button>
+              </div>
+            </div>
+
             <div>
               <label className="block text-slate-400 font-bold text-[10px] uppercase tracking-wider mb-2">
                 Email Address

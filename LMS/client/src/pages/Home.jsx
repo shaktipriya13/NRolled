@@ -100,17 +100,7 @@ const Home = () => {
                 alt="LeaveSync Dashboard"
                 className="w-full h-auto object-cover rounded-2xl border border-white/5 opacity-90"
               />
-              <div className="absolute bottom-7 right-7 left-7 p-4.5 bg-slate-950/90 backdrop-blur border border-white/10 rounded-2xl shadow-xl flex items-center gap-3">
-                <div className="w-10 h-10 rounded-xl bg-emerald-500/10 border border-emerald-500/20 flex items-center justify-center text-emerald-400">
-                  <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2.5" d="M9 12l2 2 4-4" />
-                  </svg>
-                </div>
-                <div>
-                  <h4 className="font-bold text-xs text-white">Smart Approvals</h4>
-                  <p className="text-[10px] text-slate-500 font-semibold mt-0.5">Absence logic managed automatically.</p>
-                </div>
-              </div>
+
             </div>
           </div>
         </section>
