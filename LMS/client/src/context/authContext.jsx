@@ -30,7 +30,6 @@ export const AuthProvider = ({ children }) => {
   }, []);
 
   const login = async (email, password) => {
-    setLoading(true);
     try {
       const data = await api.login(email, password);
       setUser(data.user);
@@ -39,13 +38,10 @@ export const AuthProvider = ({ children }) => {
       return data.user;
     } catch (error) {
       throw error;
-    } finally {
-      setLoading(false);
     }
   };
 
   const register = async (name, email, password, role) => {
-    setLoading(true);
     try {
       const data = await api.register(name, email, password, role);
       setUser(data.user);
@@ -54,8 +50,6 @@ export const AuthProvider = ({ children }) => {
       return data.user;
     } catch (error) {
       throw error;
-    } finally {
-      setLoading(false);
     }
   };
 

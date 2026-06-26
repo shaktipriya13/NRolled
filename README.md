@@ -1,5 +1,7 @@
 # LeaveSync — Leave Management System
 
+**🚀 Live Demo:** [https://lmsnrolledshaktipriya.vercel.app/](https://lmsnrolledshaktipriya.vercel.app/)
+
 ![Uploading image.png…]()
 
 

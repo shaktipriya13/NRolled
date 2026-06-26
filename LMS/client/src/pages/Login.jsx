@@ -8,7 +8,7 @@ const Login = () => {
   const [role, setRole] = useState("employee");
   const [error, setError] = useState("");
   const [isSubmitting, setIsSubmitting] = useState(false);
-  const { login } = useAuth();
+  const { login, logout } = useAuth();
   const navigate = useNavigate();
 
   const handleSubmit = async (e) => {
@@ -25,6 +25,7 @@ const Login = () => {
       
       // Role matching validation
       if (user.role !== role) {
+        logout();
         throw new Error(`Unauthorized. This account is registered as an ${user.role}, not an ${role}.`);
       }
 
