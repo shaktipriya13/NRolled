@@ -28,6 +28,7 @@ app.get("/api/health", (req, res) => {
 // Define Routes
 app.use("/api/auth", require("./routes/authRoutes"));
 app.use("/api/leaves", require("./routes/leaveRoutes"));
+app.use("/api/notifications", require("./routes/notificationRoutes"));
 
 // Fallback Route
 app.use((req, res) => {

@@ -1,5 +1,27 @@
 const Leave = require("../models/Leave");
 const User = require("../models/User");
+const Notification = require("../models/Notification");
+
+// Helper to format Date ranges (e.g. "2026-07-10" to "10 Jul")
+const formatDateRange = (fromStr, toStr) => {
+  try {
+    const options = { day: 'numeric', month: 'short' };
+    
+    // Replace hyphens with slashes or append timezone offset to prevent off-by-one day issues in local timezone conversion
+    const fromDateObj = new Date(fromStr + "T00:00:00");
+    const toDateObj = new Date(toStr + "T00:00:00");
+    
+    const fromFormatted = fromDateObj.toLocaleDateString('en-US', options);
+    const toFormatted = toDateObj.toLocaleDateString('en-US', options);
+    
+    if (fromStr === toStr) {
+      return fromFormatted;
+    }
+    return `${fromFormatted} - ${toFormatted}`;
+  } catch (err) {
+    return `${fromStr} - ${toStr}`;
+  }
+};
 
 // @desc    Apply for leave
 // @route   POST /api/leaves
@@ -30,6 +52,21 @@ const applyLeave = async (req, res) => {
       reason,
       status: "PENDING",
     });
+
+    // Notify all admins about the new leave request
+    try {
+      const admins = await User.find({ role: "admin" });
+      const notifications = admins.map((admin) => ({
+        userId: admin._id,
+        message: `New leave request submitted by ${employee.name}.`,
+        read: false,
+      }));
+      if (notifications.length > 0) {
+        await Notification.insertMany(notifications);
+      }
+    } catch (err) {
+      console.error("Failed to create admin notification:", err);
+    }
 
     res.status(201).json(leave);
   } catch (error) {
@@ -91,6 +128,19 @@ const updateLeaveStatus = async (req, res) => {
 
     leave.status = status;
     const updatedLeave = await leave.save();
+
+    // Notify the employee about their status update
+    try {
+      const dateText = formatDateRange(leave.fromDate, leave.toDate);
+      const message = `Your leave request for ${dateText} has been ${status.toLowerCase()}.`;
+      await Notification.create({
+        userId: leave.employee,
+        message,
+        read: false,
+      });
+    } catch (err) {
+      console.error("Failed to create employee status notification:", err);
+    }
 
     res.json(updatedLeave);
   } catch (error) {

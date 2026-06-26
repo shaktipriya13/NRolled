@@ -154,7 +154,8 @@ export const getLeaves = async () => {
   if (useBackend) {
     const res = await fetch(`${API_URL}/leaves`, { headers: getHeaders() });
     if (!res.ok) throw new Error("Failed to fetch leaves");
-    return res.json();
+    const data = await res.json();
+    return data.map((l) => ({ ...l, id: l._id || l.id }));
   } else {
     // Local fallback
     const user = JSON.parse(localStorage.getItem("lms_user"));
@@ -180,7 +181,8 @@ export const applyLeave = async (leaveData) => {
       const data = await res.json();
       throw new Error(data.message || "Failed to apply leave");
     }
-    return res.json();
+    const data = await res.json();
+    return { ...data, id: data._id || data.id };
   } else {
     // Local fallback
     const user = JSON.parse(localStorage.getItem("lms_user"));
@@ -236,8 +238,12 @@ export const updateLeaveStatus = async (leaveId, status) => {
       headers: getHeaders(),
       body: JSON.stringify({ status }),
     });
-    if (!res.ok) throw new Error("Failed to update status");
-    return res.json();
+    if (!res.ok) {
+      const data = await res.json().catch(() => ({}));
+      throw new Error(data.message || "Failed to update status");
+    }
+    const data = await res.json();
+    return { ...data, id: data._id || data.id };
   } else {
     // Local fallback
     const user = JSON.parse(localStorage.getItem("lms_user"));
@@ -293,7 +299,8 @@ export const getNotifications = async () => {
   if (useBackend) {
     const res = await fetch(`${API_URL}/notifications`, { headers: getHeaders() });
     if (!res.ok) throw new Error("Failed to fetch notifications");
-    return res.json();
+    const data = await res.json();
+    return data.map((n) => ({ ...n, id: n._id || n.id }));
   } else {
     // Local fallback
     const user = JSON.parse(localStorage.getItem("lms_user"));
@@ -322,7 +329,7 @@ export const markNotificationsAsRead = async () => {
 export const getUserStats = async () => {
   const useBackend = await checkBackend();
   if (useBackend) {
-    const res = await fetch(`${API_URL}/users/stats`, { headers: getHeaders() });
+    const res = await fetch(`${API_URL}/auth/stats`, { headers: getHeaders() });
     if (!res.ok) throw new Error("Failed to fetch stats");
     return res.json();
   } else {
